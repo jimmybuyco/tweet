@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="js/jquery.js"></script>
+    <script src="js/Chart.js"></script>
     <title>Tweet</title>
 
     <!-- Fonts -->
@@ -65,10 +66,19 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
-    <div class="content">
+<div class="flex-center position-ref full-height row">
+    <div class="content col-md-4">
         <input type="text" placeholder="tweeter username" id="username">
         <input type="button" onclick="getTweet()"  value="Submit">
+    </div>
+    <div id="tweets" class="ol-md-4">
+
+
+    </div>
+
+    <div id="g" class="ol-md-4">
+
+        <canvas id="myChart" width="400" height="400"></canvas>
     </div>
 </div>
 

@@ -8,7 +8,8 @@ class TweetController extends Controller
 {
     //
     public function index(){
-        return view('index');
+        $tweet=null;
+        return view('index',['tweet' => $tweet]);
     }
 
     public function getTweet(){
