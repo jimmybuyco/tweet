@@ -40,12 +40,19 @@ class TweetController extends Controller
 //        dd($array);
         $i=0;
         $tweets=null;
+        $data=[0,0,0,0,0,0,0,0,0,0,0,0,
+               0,0,0,0,0,0,0,0,0,0,0,0];
         foreach ($array as $stat) {
-            $tweets[$i]=array('tweet'=>$stat['text'],'time'=>$stat['created_at']);
+            $date = $stat['created_at'];
+            $date = strtotime($date);
+            $hr =  date('H', $date);
+
+            $data[intval($hr)]+=1;
+            $tweets[$i]=array('tweet'=>$stat['text'],'time'=>date("Y/m/d H:i:s", $date));
             $i++;
         }
-
-        return $tweets;
+//        $data=array('1','2');
+        return array('tweets'=>$tweets,'data'=>$data);
 
     }
 
