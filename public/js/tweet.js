@@ -8,7 +8,7 @@ function getTweet(){
         },//
         success: function (msg) {
             var htm="<table border=1>";
-            htm+="<tr><td>Tweet</td><td>Date</td><td>Time</td>";
+            htm+="<tr><td>Date</td><td>Time</td><td>Tweet</td>";
 //            console.log(msg);
             msg.tweets.forEach(function (dt) {
                 htm+="<td>"+dt.date+"</td><td>"+dt.time+"</td><tr><td>"+dt.tweet+"</td>";
