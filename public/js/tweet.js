@@ -11,7 +11,7 @@ function getTweet(){
             htm+="<tr><td>Tweet</td><td>Date</td><td>Time</td>";
 //            console.log(msg);
             msg.tweets.forEach(function (dt) {
-                htm+="<tr><td>"+dt.tweet+"</td><td>"+dt.date+"</td><td>"+dt.time+"</td>";
+                htm+="<td>"+dt.date+"</td><td>"+dt.time+"</td><tr><td>"+dt.tweet+"</td>";
             })
             htm+="</table>";
             $("#tweets").html(htm);
