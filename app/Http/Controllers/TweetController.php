@@ -2,11 +2,9 @@
 namespace App\Http\Controllers;
 use Abraham\TwitterOAuth\TwitterOAuth;
 use Input;
-use Illuminate\Http\Request;
 
 class TweetController extends Controller
 {
-    //
     public function index(){
         $tweet=null;
         return view('index',['tweet' => $tweet]);
@@ -14,11 +12,9 @@ class TweetController extends Controller
 
     public function getTweet(){
 
-        require_once("twitteroauth/autoload.php"); //Path to twitteroauth library
-//        dd('1');
+        require_once("twitteroauth/autoload.php");
         $twitteruser = Input::get('user');
-//        dd($twitteruser);
-        $notweets = 100;
+        $notweets = 500;
         $consumerkey = "j0YHN0vnMoCtcjdnZNsI5EFSU";
         $consumersecret = "uk8Hy3hO5pZKDsDs6BE2ywIeY3HzqPqMV8rmJINNIq5UU3wyAa";
         $accesstoken = "836781110298308609-3OV9XdaL4hbWGkQcBfaMvTZXCUZqWtp";
@@ -26,18 +22,13 @@ class TweetController extends Controller
 
         function getConnectionWithAccessToken($cons_key, $cons_secret, $oauth_token, $oauth_token_secret) {
             $connection = new TwitterOAuth($cons_key, $cons_secret, $oauth_token, $oauth_token_secret);
-//            $content = $connection->get("account/verify_credentials");
             return $connection;
         }
 
         $connection = getConnectionWithAccessToken($consumerkey, $consumersecret, $accesstoken, $accesstokensecret);
         $content = $connection->get("account/verify_credentials");
         $statuses = $connection->get("statuses/user_timeline", ["screen_name" => $twitteruser,"count"=> $notweets]);
-//        $tweets = $connection->get("statuses/user_timeline.json?screen_name=".$twitteruser."&count=".$notweets);
-//        echo var_dump($statuses);
-//        echo json_encode($content);
         $array = json_decode(json_encode($statuses), true);
-//        dd($array);
         $i=0;
         $tweets=null;
         $data=[0,0,0,0,0,0,0,0,0,0,0,0,
@@ -46,17 +37,12 @@ class TweetController extends Controller
             $date = $stat['created_at'];
             $date = strtotime($date);
             $hr =  date('H', $date);
-
             $data[intval($hr)]+=1;
-            $tweets[$i]=array('tweet'=>$stat['text'],'time'=>date("Y/m/d H:i:s", $date));
+            $tweets[$i]=array('tweet'=>$stat['text'],'date'=>date("Y/m/d", $date) ,'time'=>date("H:i:s", $date));
             $i++;
         }
-//        $data=array('1','2');
         return array('tweets'=>$tweets,'data'=>$data);
-
     }
-
-
 }
 
 
