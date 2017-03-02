@@ -21,7 +21,7 @@
 <div class="se-pre-con hidden"></div>
 <br>
 <div class="flex-center position-ref">
-    <input type="text" placeholder="tweeter username" id="username">
+    <input type="text" placeholder="twitter username" id="username">
     <input type="button" onclick="getTweet()"  value="Submit">
 </div>
 <hr>
