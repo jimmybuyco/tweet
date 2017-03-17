@@ -13,3 +13,4 @@
 
 Route::get('/','TweetController@index');
 Route::get('getTweet','TweetController@getTweet');
+Route::get('sample','TweetController@sample');

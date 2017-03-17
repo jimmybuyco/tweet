@@ -10,6 +10,12 @@ class TweetController extends Controller
         return view('index',['tweet' => $tweet]);
     }
 
+    public function sample(){
+        $tweet="hello";
+        return view('sample',['msg' => $tweet]);
+    }
+
+
     public function getTweet(){
 
         require_once("twitteroauth/autoload.php");
